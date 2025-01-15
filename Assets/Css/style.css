@@ -1,0 +1,251 @@
+* {
+  margin: 0;
+  padding: 0;
+  color: #e9ecef;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+}
+
+body {
+  overflow: hidden;
+}
+
+.container {
+  display: flex;
+  justify-content: space-evenly;
+  height: 100vh;
+  background-color: #1e1d24;
+}
+
+/* Panel izquierdo */
+
+.panel_actions {
+  width: 200px;
+  height: 100%;
+  background-color: black;
+}
+
+.logotype {
+  width: 100%;
+  height: 100%;
+}
+
+/* Panel de informacion */
+
+.info_admin {
+  display: flex;
+  width: 100%;
+  height: 120px;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Acciones del administrador (panel) */
+
+.action_admin {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  flex-direction: column;
+  border: 1px solo #fff;
+}
+
+/* estilo para los elementos de accion */
+.action_contain {
+  display: flex;
+  width: 100%;
+  height: 60px;
+  justify-content: center;
+  align-items: center;
+}
+
+/* estilo para los botones de link */
+
+.button {
+  width: 120px;
+  text-align: left;
+  text-decoration: none;
+  padding: 8px 30px;
+  border-radius: 4px;
+  background-position: 10px center;
+  background-size: 25px;
+  background-repeat: no-repeat;
+  text-indent: 1em;
+}
+
+.button:hover {
+  background-color: #0d6efd;
+  color: white;
+}
+
+/* ------------------------------------------------------------------ */
+
+/* Boton de agregar icono */
+.add-user {
+  background-image: url("../Icons/icon_User.png");
+}
+
+.show-users {
+  background-image: url("../Icons/icon_Group.png");
+}
+
+/* ------------------------------------------------------------------ */
+
+/* Panel de la vista */
+
+.panel_views {
+  width: 90%;
+  height: 100%;
+  background-color: #1e1d24;
+}
+
+/* ----------------------------------------------------------------- */
+
+/* Contenedor de la tabla */
+.table-container {
+  max-width: 100%; /* Asegura que la tabla no desborde horizontalmente */
+  max-height: 90%; /* Define un alto fijo para el contenedor */
+  overflow-y: auto; /* Habilita el scroll vertical */
+  margin: 20px auto;
+  padding: 10px;
+}
+
+/* Tabla */
+.clients-table {
+  width: 100%; /* Se ajusta al contenedor */
+  border-collapse: collapse;
+  min-width: 800px; /* Asegura scroll horizontal en pantallas pequeñas si es necesario */
+}
+
+/* Encabezados */
+.clients-table thead tr {
+  background-color: #007bff;
+  color: #fff;
+}
+
+.clients-table th,
+.clients-table td {
+  text-align: center;
+  padding: 10px;
+}
+
+/* Alternar color de filas */
+.clients-table tbody tr:nth-child(even) {
+  background-color: #000000;
+}
+
+/* Hover en las filas */
+.clients-table tbody tr:hover {
+  background-color: #062e69;
+  color: white;
+}
+
+/* Estilo responsivo */
+@media screen and (max-width: 768px) {
+  .clients-table {
+    font-size: 14px;
+  }
+}
+
+/* Estilo general para los botones */
+
+.buttons-table {
+  display: flex;
+}
+
+.action-table-button {
+  text-decoration: none;
+  width: 25px;
+  height: 30px;
+  margin: 4px;
+  border-radius: 4px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 20px;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -o-border-radius: 4px;
+}
+
+.button-edit {
+  background-color: #ffc107; /* Amarillo */
+  background-image: url("../Icons/icon_Edit.png");
+}
+
+.button-delete {
+  background-color: #dc3545; /* Rojo */
+  background-image: url("../Icons/icon_Delete.png");
+}
+
+/* ------------------FORMULARIO---------------------------------- */
+
+.form-container {
+  max-width: 900px;
+  margin: 20px auto;
+  padding: 20px;
+  border: 1px solid #333; /* Bordes oscuros */
+  border-radius: 5px;
+  background-color: #1e1d24; /* Fondo oscuro */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Sombra para resaltar */
+  color: #e9ecef; /* Color de texto */
+}
+
+.form-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px; /* Más espacio entre filas */
+  gap: 15px; /* Espacio entre columnas */
+}
+
+.form-group {
+  flex: 1;
+  margin: 0 10px; /* Ajuste de márgenes laterales */
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px; /* Más espacio entre etiqueta e input */
+  font-weight: bold;
+  color: #e9ecef; /* Color del texto en las etiquetas */
+}
+
+.form-group input,
+.form-group select {
+  width: 100%;
+  padding: 10px; /* Espacio interno mayor */
+  font-size: 14px;
+  border: 1px solid #444; /* Bordes oscuros */
+  border-radius: 4px;
+  background-color: #2a2a2a; /* Fondo oscuro para los inputs */
+  color: #e9ecef; /* Texto claro */
+  box-sizing: border-box; /* Asegura que padding no desborde */
+}
+
+.form-group input::placeholder {
+  color: #888888; /* Placeholder con tono más claro */
+}
+
+input {
+  outline: none;
+}
+
+button {
+  padding: 12px 25px; /* Botón más espacioso */
+  font-size: 16px;
+  background-color: #0d6efd; /* Azul */
+  color: #ffffff; /* Blanco para texto */
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin: 0 auto;
+  display: block;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #0056b3; /* Azul más oscuro al pasar el cursor */
+}
+
+button:active {
+  background-color: #003f7f; /* Azul aún más oscuro al presionar */
+}
