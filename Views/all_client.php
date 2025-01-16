@@ -17,7 +17,7 @@
             </tr>
         </thead>
         <tbody>
-            <?php GetAllClient(); Delete_User_ID();?>
+            <?php GetAllClient(); ?>
         </tbody>
     </table>
 </div>

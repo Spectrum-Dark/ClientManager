@@ -1,6 +1,10 @@
 <?php
 require_once('./Models/conecction.php');
 
+// Controlador para manejar la eliminación de usuarios
+if (isset($_GET['deleteuser'])) {
+    Delete_User_ID((int)$_GET['deleteuser']);
+}
 
 function GetAllClient()
 {
@@ -8,33 +12,33 @@ function GetAllClient()
     $Mysql = new MySQLDatabase();
     $Mysql->open_connection();
 
-    // Ejecutamos el procedimiento almacenado
-    $result = $Mysql->query('CALL `ShowClients`');
-
-    // Verificamos si hay resultados
-    if ($result) {
+    // Ejecutamos el procedimiento almacenado y obtenemos los resultados
+    if ($result = $Mysql->query('CALL `ShowClients`')) {
         // Iteramos por cada fila y generamos las filas de la tabla
         while ($row = $result->fetch_assoc()) {
             echo '<tr>';
-            echo '<td>' . $row['id_client'] . '</td>';
-            echo '<td>' . $row['name_client'] . '</td>';
-            echo '<td>' . $row['phone'] . '</td>';
-            echo '<td>' . $row['service_type'] . '</td>';
-            echo '<td>' . $row['username_client'] . '</td>';
-            echo '<td>' . $row['password_client'] . '</td>';
-            echo '<td>' . $row['start_date'] . '</td>';
-            echo '<td>' . $row['start_month'] . '</td>';
-            echo '<td>' . $row['end_date'] . '</td>';
-            echo '<td>' . $row['end_month'] . '</td>';
-            echo '<td>' . $row['monthly_payment'] . '</td>';
+            echo '<td>' . htmlspecialchars($row['id_client']) . '</td>';
+            echo '<td>' . htmlspecialchars($row['name_client']) . '</td>';
+            echo '<td>' . htmlspecialchars($row['phone']) . '</td>';
+            echo '<td>' . htmlspecialchars($row['service_type']) . '</td>';
+            echo '<td>' . htmlspecialchars($row['username_client']) . '</td>';
+            echo '<td>' . htmlspecialchars($row['password_client']) . '</td>';
+            echo '<td>' . htmlspecialchars($row['start_date']) . '</td>';
+            echo '<td>' . htmlspecialchars($row['start_month']) . '</td>';
+            echo '<td>' . htmlspecialchars($row['end_date']) . '</td>';
+            echo '<td>' . htmlspecialchars($row['end_month']) . '</td>';
+            echo '<td>' . htmlspecialchars($row['monthly_payment']) . '</td>';
             echo '<td>
                     <div class="buttons-table">
-                        <a class="action-table-button button-edit" href="?action=updateclient&byID=' . $row['id_client'] . '"></a>
-                        <a class="action-table-button button-delete" href="?action=allclient&deleteuser=' . $row['id_client'] . '"></a>
+                        <a class="action-table-button button-edit" href="?action=updateclient&byID=' . urlencode($row['id_client']) . '"></a>
+                        <a class="action-table-button button-delete" href="?action=allclient&deleteuser=' . urlencode($row['id_client']) . '"></a>
                     </div>
                   </td>';
             echo '</tr>';
         }
+
+        // Libera el conjunto de resultados para evitar duplicados en consultas futuras
+        $result->free();
     } else {
         // En caso de error o si no hay datos
         echo '<tr><td colspan="12">No se encontraron datos</td></tr>';
@@ -43,6 +47,7 @@ function GetAllClient()
     // Cerramos la conexión
     $Mysql->close_connection();
 }
+
 
 function GetClient_ID()
 {
@@ -120,7 +125,7 @@ function InsertClient()
                 $Mysql->escape_value($p_end_month),
                 (int)$p_monthly_payment
             );
-            
+
 
             /* Realizamos actualizacion */
             $Mysql->query($SQL);
@@ -191,13 +196,12 @@ function Update_Client_ID()
 
 function Delete_User_ID()
 {
+    // Asegúrate de que no haya salida previa
     if (isset($_GET['deleteuser'])) {
         $id = (int)$_GET['deleteuser'];
 
         $Mysql = new MySQLDatabase();
         $Mysql->open_connection();
-
-        /* Pasamos el ID */
         $p_id_client = $id;
 
         $SQL = sprintf(
@@ -207,6 +211,5 @@ function Delete_User_ID()
 
         $Mysql->query($SQL);
         $Mysql->close_connection();
-        GetAllClient();
     }
 }

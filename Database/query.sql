@@ -22,7 +22,7 @@ CREATE TABLE clients (
 SELECT * FROM clients
 
 /* Procedimiento almacenado Mostrar todo ordenado*/
-DELIMITER / /
+DELIMITER //
 
 CREATE PROCEDURE ShowClients()
 BEGIN
@@ -41,11 +41,16 @@ BEGIN
         end_month,
         monthly_payment
     FROM clients
-    -- Ordenar por la columna end_date de forma ascendente
-    ORDER BY STR_TO_DATE(end_date, '%Y-%m-%d') ASC;
+    -- Ordenar primero por end_month, luego por end_date
+    ORDER BY end_month ASC, STR_TO_DATE(end_date, '%Y-%m-%d') ASC;
 END //
 
-DELIMITER;
+DELIMITER ;
+
+CALL `ShowClients`;
+
+DROP Procedure `ShowClients`;
+
 
 /* Procedimiento almacenado Insertar client*/
 
@@ -152,3 +157,5 @@ CALL `InsertClient` (
 );
 
 CALL `ShowClients`
+
+SELECT COUNT(*) FROM clients;
