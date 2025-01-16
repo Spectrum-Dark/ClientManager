@@ -1,0 +1,1 @@
+mysql -u root -p streaming_clients < "C:/Users/Bryan_MQ/Desktop/Database_Client.sql"

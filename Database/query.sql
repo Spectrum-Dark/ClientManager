@@ -159,3 +159,4 @@ CALL `InsertClient` (
 CALL `ShowClients`
 
 SELECT COUNT(*) FROM clients;
+
